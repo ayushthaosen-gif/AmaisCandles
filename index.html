@@ -26,7 +26,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,100,1;1,9..144,300..700,100,1&family=Nunito:wght@400;500;600;700&family=Caveat:wght@500;600&display=swap">
 <style>
-/* Layout: a candlelit shop window. Hero beside the hand-held logo, then a photo grid of the handmade work, the maker's story, and the custom order counter. */
+/* Follows the Amai's Candles design system (claude.ai/artifact/VxrFLuvDBsCdP3eZ2JcCNd): wax/paper/ink/flame colours, Fraunces + Nunito + Caveat, pill buttons, handwritten notes.
+   Layout: a candlelit shop window. Hero beside the hand-held logo, then a photo grid of the handmade work, the maker's story, and the custom order counter. */
 :root {
   --wax: #F5EEE2;        /* page ground, the brand's cream */
   --paper: #FBF8F2;      /* raised surfaces */
@@ -47,8 +48,8 @@
   --step--1: .875rem;
   --step-0: 1.0625rem;
   --step-1: 1.3rem;
-  --step-2: 1.85rem;
-  --step-3: clamp(2.4rem, 1.5rem + 3.6vw, 3.9rem);
+  --step-2: 1.875rem;
+  --step-3: clamp(2.4rem, 1.5rem + 3.2vw, 3.5rem);
   --radius: 14px;
   --measure: 62ch;
 }
@@ -185,7 +186,7 @@ section.block { padding-block: 84px; }
 /* Custom orders */
 .steps { list-style: none; margin: 0 0 36px; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; counter-reset: step; }
 .steps li { display: grid; gap: 6px; padding-top: 16px; border-top: 1.5px solid var(--ink); counter-increment: step; min-width: 0; }
-.steps li::before { content: "Step " counter(step); font-family: var(--font-script); font-size: 1.35rem; font-weight: 600; line-height: 1; color: var(--flame-text); }
+.steps li::before { content: "Step " counter(step); font-family: var(--font-script); font-size: 1.45rem; font-weight: 600; line-height: 1; color: var(--flame-text); transform: rotate(-1.5deg); transform-origin: left center; justify-self: start; }
 .steps h3 { font-size: var(--step-1); }
 .steps p { color: var(--ink-soft); font-size: .98rem; }
 /* The custom order form goes inside #order-form */
@@ -201,7 +202,7 @@ section.block { padding-block: 84px; }
 .site-footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 20px; }
 .site-footer img { height: 30px; width: auto; }
 .site-footer p { color: var(--ink-soft); font-size: var(--step--1); }
-.site-footer .script { font-family: var(--font-script); color: var(--ink); font-size: 1.6rem; font-weight: 600; line-height: 1; }
+.site-footer .script { font-family: var(--font-script); color: var(--ink); font-size: 2rem; font-weight: 600; line-height: 1; }
 
 @media (max-width: 860px) {
   .hero .wrap, .about .wrap { grid-template-columns: 1fr; }
@@ -426,7 +427,7 @@ section.block { padding-block: 84px; }
       </ol>
       <div id="order-form">
         <h3>The order form is on its way</h3>
-        <p>Soon you will be able to request a custom piece right here. Until then, get in touch and tell us what you have in mind.</p>
+        <p>Soon you will be able to request a custom piece right here. Until then, get in touch and tell me what you have in mind.</p>
       </div>
     </div>
   </section>
