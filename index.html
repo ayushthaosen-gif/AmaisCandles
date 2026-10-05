@@ -6,7 +6,7 @@
 <meta name="description" content="Soy candles and crochet earrings, necklaces, coasters and pouches, all made by hand at home. Have a look, or ask me to make something for you.">
 <link rel="icon" type="image/png" href="images/favicon.png">
 <link rel="canonical" href="https://amaiscandles.netlify.app/">
-<meta name="theme-color" content="#F5EEE2">
+<meta name="theme-color" content="#FFFFFF">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Amai's Candles">
 <meta property="og:title" content="Amai's Candles | Hand-poured candles and handmade crochet">
@@ -24,42 +24,44 @@
 <title>Amai's Candles | Hand-poured candles and handmade crochet</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Figtree:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Cormorant+Garamond:ital,wght@1,400;1,500&family=Homemade+Apple&display=swap">
 <style>
 /* Layout: a candlelit shop window. Hero beside the hand-held logo, then a photo grid of the handmade work, the maker's story, and the custom order counter. */
 :root {
-  --wax: #F5EEE2;        /* page ground, the brand's cream */
-  --paper: #FBF8F2;      /* raised surfaces */
-  --ink: #2B211C;        /* the logo's line colour */
-  --ink-soft: #6A594C;
-  --line: #DCCDB9;
-  --flame: #F39A2B;      /* the logo's flame */
-  --flame-text: #A9560B; /* flame tone dark enough for text on cream */
-  --glow: rgba(243,154,43,.28);
+  --wax: #FFFFFF;        /* page ground, the brand's white */
+  --paper: #FAF5F8;      /* raised surfaces, a faint blush */
+  --ink: #1C1A1B;        /* the logo's line colour */
+  --ink-soft: #5C5559;
+  --line: #E8DDE3;
+  --flame: #BC5393;      /* the logo's flame */
+  --flame-text: #9C3B76; /* flame tone dark enough for text on white */
+  --glow: rgba(188,83,147,.22);
   --logo-on-light: inline-block;
   --logo-on-dark: none;
 
-  --font-display: "Young Serif", Georgia, "Times New Roman", serif;
-  --font-body: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: "EB Garamond", Garamond, Georgia, "Times New Roman", serif;
+  --font-body: "EB Garamond", Garamond, Georgia, "Times New Roman", serif;
+  --font-accent: "Cormorant Garamond", "EB Garamond", Georgia, serif;
+  --font-script: "Homemade Apple", "Segoe Script", cursive;
 
   --step--1: .875rem;
-  --step-0: 1.0625rem;
-  --step-1: 1.3rem;
-  --step-2: 1.75rem;
-  --step-3: clamp(2.2rem, 1.4rem + 3.4vw, 3.6rem);
+  --step-0: 1.1875rem;
+  --step-1: 1.4rem;
+  --step-2: 2rem;
+  --step-3: clamp(2.4rem, 1.5rem + 3.6vw, 3.9rem);
   --radius: 14px;
   --measure: 62ch;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --wax: #1C1612; --paper: #261E18; --ink: #F1E6D4; --ink-soft: #BDAA96;
-    --line: #45372C; --flame: #F6A845; --flame-text: #F6B35E; --glow: rgba(246,168,69,.22);
+    --wax: #151213; --paper: #211B1E; --ink: #F4EEF1; --ink-soft: #BFB3B9;
+    --line: #3E3339; --flame: #D77AB2; --flame-text: #E59BC7; --glow: rgba(215,122,178,.22);
     --logo-on-light: none; --logo-on-dark: inline-block; color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --wax: #1C1612; --paper: #261E18; --ink: #F1E6D4; --ink-soft: #BDAA96;
-  --line: #45372C; --flame: #F6A845; --flame-text: #F6B35E; --glow: rgba(246,168,69,.22);
+  --wax: #151213; --paper: #211B1E; --ink: #F4EEF1; --ink-soft: #BFB3B9;
+  --line: #3E3339; --flame: #D77AB2; --flame-text: #E59BC7; --glow: rgba(215,122,178,.22);
   --logo-on-light: none; --logo-on-dark: inline-block; color-scheme: dark;
 }
 
@@ -76,13 +78,13 @@ body {
 img { max-width: 100%; height: auto; }
 a { color: var(--flame-text); text-underline-offset: 3px; }
 :focus-visible { outline: 2px solid var(--flame); outline-offset: 3px; border-radius: 4px; }
-h1, h2, h3 { font-family: var(--font-display); font-weight: 400; line-height: 1.15; text-wrap: balance; margin: 0; }
+h1, h2, h3 { font-family: var(--font-display); font-weight: 400; line-height: 1.12; text-wrap: balance; margin: 0; }
 p { margin: 0; }
 .wrap { width: 100%; max-width: 1120px; margin-inline: auto; padding-inline: 20px; }
 .on-light { display: var(--logo-on-light); }
 .on-dark { display: var(--logo-on-dark); }
 .eyebrow {
-  font-size: var(--step--1); font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
+  font-size: var(--step--1); font-weight: 500; letter-spacing: .16em; text-transform: uppercase;
   color: var(--flame-text);
 }
 
@@ -98,20 +100,20 @@ p { margin: 0; }
 .brand .mark { height: 46px; width: auto; }
 .brand .word { height: 26px; width: auto; }
 .nav { display: flex; gap: 22px; align-items: center; flex-wrap: wrap; }
-.nav a { color: var(--ink); text-decoration: none; font-weight: 500; font-size: .98rem; }
+.nav a { color: var(--ink); text-decoration: none; font-weight: 500; font-size: 1.08rem; }
 .nav a:hover { color: var(--flame-text); }
 .nav .btn { padding: 8px 16px; }
 
 .btn {
   display: inline-flex; align-items: center; gap: 8px;
   padding: 12px 22px; border-radius: 999px;
-  font: 600 1rem var(--font-body); text-decoration: none;
+  font: 500 1.05rem var(--font-body); text-decoration: none;
   border: 1.5px solid var(--ink); color: var(--ink); background: transparent;
   transition: background .2s, color .2s;
 }
 .btn:hover { background: var(--ink); color: var(--wax); }
 .btn.primary { background: var(--ink); color: var(--wax); }
-.btn.primary:hover { background: var(--flame); border-color: var(--flame); color: #2B211C; }
+.btn.primary:hover { background: var(--flame); border-color: var(--flame); color: #FFFFFF; }
 
 /* Hero */
 .hero .wrap {
@@ -120,8 +122,8 @@ p { margin: 0; }
 }
 .hero-copy { display: grid; gap: 22px; min-width: 0; }
 .hero h1 { font-size: var(--step-3); }
-.hero h1 em { font-style: normal; color: var(--flame-text); }
-.hero .lede { font-size: var(--step-1); color: var(--ink-soft); max-width: 34ch; line-height: 1.5; }
+.hero h1 em { font-family: var(--font-accent); font-style: italic; font-weight: 500; color: var(--flame-text); }
+.hero .lede { font-family: var(--font-accent); font-style: italic; font-size: calc(var(--step-1) * 1.1); color: var(--ink-soft); max-width: 34ch; line-height: 1.5; }
 .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
 .hero-art { position: relative; justify-self: center; width: min(100%, 420px); }
 .hero-art img { position: relative; width: 100%; }
@@ -164,7 +166,7 @@ section.block { padding-block: 84px; }
 .piece:hover figure img { transform: scale(1.035); }
 .piece .meta { display: grid; gap: 2px; }
 .piece h3 { font-size: var(--step-1); }
-.piece .notes { color: var(--ink-soft); font-size: .98rem; line-height: 1.5; }
+.piece .notes { color: var(--ink-soft); font-size: 1.05rem; line-height: 1.5; }
 
 .category { display: grid; gap: 20px; min-width: 0; }
 .category + .category { margin-top: 56px; }
@@ -178,14 +180,14 @@ section.block { padding-block: 84px; }
 .about-copy { display: grid; gap: 18px; min-width: 0; max-width: var(--measure); }
 .about-copy h2 { font-size: var(--step-2); }
 .about-copy p { color: var(--ink-soft); }
-.about-copy .sign { font-family: var(--font-display); color: var(--ink); font-size: var(--step-1); }
+.about-copy .sign { font-family: var(--font-script); color: var(--ink); font-size: var(--step-0); line-height: 2.2; }
 
 /* Custom orders */
 .steps { list-style: none; margin: 0 0 36px; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; counter-reset: step; }
 .steps li { display: grid; gap: 6px; padding-top: 16px; border-top: 1.5px solid var(--ink); counter-increment: step; min-width: 0; }
-.steps li::before { content: "Step " counter(step); font-size: var(--step--1); font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--flame-text); }
+.steps li::before { content: "Step " counter(step); font-size: var(--step--1); font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--flame-text); }
 .steps h3 { font-size: var(--step-1); }
-.steps p { color: var(--ink-soft); font-size: .98rem; }
+.steps p { color: var(--ink-soft); font-size: 1.05rem; }
 /* The custom order form goes inside #order-form */
 #order-form {
   border: 1.5px dashed var(--line); border-radius: var(--radius); background: var(--paper);
@@ -199,6 +201,7 @@ section.block { padding-block: 84px; }
 .site-footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 20px; }
 .site-footer img { height: 30px; width: auto; }
 .site-footer p { color: var(--ink-soft); font-size: var(--step--1); }
+.site-footer .script { font-family: var(--font-script); color: var(--ink); font-size: .95rem; line-height: 2; }
 
 @media (max-width: 860px) {
   .hero .wrap, .about .wrap { grid-template-columns: 1fr; }
@@ -433,6 +436,7 @@ section.block { padding-block: 84px; }
   <div class="wrap">
     <img class="on-light" src="images/logo-wordmark.png" alt="Amai's Candles" width="813" height="147">
     <img class="on-dark" src="images/logo-wordmark-light.png" alt="Amai's Candles" width="813" height="147">
+    <p class="script">Handpoured with love</p>
     <p>Candles and crochet, made by hand at home. © 2026 Amai's Candles</p>
   </div>
 </footer>
