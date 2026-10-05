@@ -1,0 +1,424 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Amai's Candles: hand-poured soy candles and handmade crochet earrings, necklaces, coasters and pouches. See the work and order a custom piece.">
+<link rel="icon" type="image/png" href="images/favicon.png">
+<!--PREVIEW-START-->
+<title>Amai's Candles</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Figtree:wght@400;500;600&display=swap">
+<style>
+/* Layout: a candlelit shop window. Hero beside the hand-held logo, then a photo grid of the handmade work, the maker's story, and the custom order counter. */
+:root {
+  --wax: #F5EEE2;        /* page ground, the brand's cream */
+  --paper: #FBF8F2;      /* raised surfaces */
+  --ink: #2B211C;        /* the logo's line colour */
+  --ink-soft: #6A594C;
+  --line: #DCCDB9;
+  --flame: #F39A2B;      /* the logo's flame */
+  --flame-text: #A9560B; /* flame tone dark enough for text on cream */
+  --glow: rgba(243,154,43,.28);
+  --logo-on-light: inline-block;
+  --logo-on-dark: none;
+
+  --font-display: "Young Serif", Georgia, "Times New Roman", serif;
+  --font-body: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --step--1: .875rem;
+  --step-0: 1.0625rem;
+  --step-1: 1.3rem;
+  --step-2: 1.75rem;
+  --step-3: clamp(2.2rem, 1.4rem + 3.4vw, 3.6rem);
+  --radius: 14px;
+  --measure: 62ch;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --wax: #1C1612; --paper: #261E18; --ink: #F1E6D4; --ink-soft: #BDAA96;
+    --line: #45372C; --flame: #F6A845; --flame-text: #F6B35E; --glow: rgba(246,168,69,.22);
+    --logo-on-light: none; --logo-on-dark: inline-block; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --wax: #1C1612; --paper: #261E18; --ink: #F1E6D4; --ink-soft: #BDAA96;
+  --line: #45372C; --flame: #F6A845; --flame-text: #F6B35E; --glow: rgba(246,168,69,.22);
+  --logo-on-light: none; --logo-on-dark: inline-block; color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+section, .category { scroll-margin-top: 84px; }
+body {
+  margin: 0;
+  background: var(--wax);
+  color: var(--ink);
+  font: 400 var(--step-0)/1.65 var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; height: auto; }
+a { color: var(--flame-text); text-underline-offset: 3px; }
+:focus-visible { outline: 2px solid var(--flame); outline-offset: 3px; border-radius: 4px; }
+h1, h2, h3 { font-family: var(--font-display); font-weight: 400; line-height: 1.15; text-wrap: balance; margin: 0; }
+p { margin: 0; }
+.wrap { width: 100%; max-width: 1120px; margin-inline: auto; padding-inline: 20px; }
+.on-light { display: var(--logo-on-light); }
+.on-dark { display: var(--logo-on-dark); }
+.eyebrow {
+  font-size: var(--step--1); font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--flame-text);
+}
+
+/* Header */
+.site-header {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10;
+  background: color-mix(in srgb, var(--wax) 88%, transparent);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line);
+}
+.site-header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 10px; }
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.brand .mark { height: 46px; width: auto; }
+.brand .word { height: 26px; width: auto; }
+.nav { display: flex; gap: 22px; align-items: center; flex-wrap: wrap; }
+.nav a { color: var(--ink); text-decoration: none; font-weight: 500; font-size: .98rem; }
+.nav a:hover { color: var(--flame-text); }
+.nav .btn { padding: 8px 16px; }
+
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 12px 22px; border-radius: 999px;
+  font: 600 1rem var(--font-body); text-decoration: none;
+  border: 1.5px solid var(--ink); color: var(--ink); background: transparent;
+  transition: background .2s, color .2s;
+}
+.btn:hover { background: var(--ink); color: var(--wax); }
+.btn.primary { background: var(--ink); color: var(--wax); }
+.btn.primary:hover { background: var(--flame); border-color: var(--flame); color: #2B211C; }
+
+/* Hero */
+.hero .wrap {
+  display: grid; grid-template-columns: 1.1fr .9fr; gap: 40px; align-items: center;
+  padding-block: 56px 72px;
+}
+.hero-copy { display: grid; gap: 22px; min-width: 0; }
+.hero h1 { font-size: var(--step-3); }
+.hero h1 em { font-style: normal; color: var(--flame-text); }
+.hero .lede { font-size: var(--step-1); color: var(--ink-soft); max-width: 34ch; line-height: 1.5; }
+.hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+.hero-art { position: relative; justify-self: center; width: min(100%, 420px); }
+.hero-art img { position: relative; width: 100%; }
+/* Soft candlelight sitting behind the logo's flame */
+.hero-art::before {
+  content: ""; position: absolute; left: 50%; top: 10%;
+  width: 46%; aspect-ratio: 1; transform: translate(-50%, -20%);
+  background: radial-gradient(circle, var(--glow) 0%, transparent 68%);
+  animation: flicker 3.2s ease-in-out infinite;
+}
+@keyframes flicker {
+  0%, 100% { opacity: .85; transform: translate(-50%, -20%) scale(1); }
+  40% { opacity: 1; transform: translate(-50%, -22%) scale(1.06); }
+  70% { opacity: .75; transform: translate(-50%, -19%) scale(.97); }
+}
+
+.facts { border-block: 1px solid var(--line); background: var(--paper); }
+.facts ul {
+  list-style: none; margin: 0 auto; padding-block: 18px;
+  display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 28px;
+}
+.facts li { display: flex; align-items: center; gap: 10px; font-weight: 500; }
+.facts svg { width: 22px; height: 22px; flex: none; }
+
+/* Sections */
+section.block { padding-block: 84px; }
+.section-head { display: grid; gap: 10px; margin-bottom: 40px; max-width: var(--measure); }
+.section-head h2 { font-size: var(--step-2); }
+.section-head p { color: var(--ink-soft); }
+
+/* Gallery */
+.gallery { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 32px 24px; }
+.gallery.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.piece { display: grid; gap: 12px; align-content: start; min-width: 0; }
+.piece figure {
+  margin: 0; aspect-ratio: 1 / 1; max-width: 100%;
+  border-radius: var(--radius); background: var(--paper); overflow: hidden;
+}
+.piece figure img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
+.piece:hover figure img { transform: scale(1.035); }
+.piece .meta { display: grid; gap: 2px; }
+.piece h3 { font-size: var(--step-1); }
+.piece .notes { color: var(--ink-soft); font-size: .98rem; line-height: 1.5; }
+
+.category { display: grid; gap: 20px; min-width: 0; }
+.category + .category { margin-top: 56px; }
+.category-title { font-size: var(--step-2); display: flex; align-items: center; gap: 16px; }
+.category-title::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+
+/* About */
+.about { background: var(--paper); border-block: 1px solid var(--line); }
+.about .wrap { display: grid; grid-template-columns: .85fr 1.15fr; gap: 56px; align-items: center; }
+.about-art { justify-self: center; width: min(100%, 380px); }
+.about-copy { display: grid; gap: 18px; min-width: 0; max-width: var(--measure); }
+.about-copy h2 { font-size: var(--step-2); }
+.about-copy p { color: var(--ink-soft); }
+.about-copy .sign { font-family: var(--font-display); color: var(--ink); font-size: var(--step-1); }
+
+/* Custom orders */
+.steps { list-style: none; margin: 0 0 36px; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; counter-reset: step; }
+.steps li { display: grid; gap: 6px; padding-top: 16px; border-top: 1.5px solid var(--ink); counter-increment: step; min-width: 0; }
+.steps li::before { content: "Step " counter(step); font-size: var(--step--1); font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--flame-text); }
+.steps h3 { font-size: var(--step-1); }
+.steps p { color: var(--ink-soft); font-size: .98rem; }
+/* The custom order form goes inside #order-form */
+#order-form {
+  border: 1.5px dashed var(--line); border-radius: var(--radius); background: var(--paper);
+  padding: 40px 24px; display: grid; justify-items: center; gap: 10px; text-align: center;
+}
+#order-form h3 { font-size: var(--step-1); }
+#order-form p { color: var(--ink-soft); max-width: 48ch; }
+
+/* Footer */
+.site-footer { padding-block: 48px 40px; border-top: 1px solid var(--line); }
+.site-footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 20px; }
+.site-footer img { height: 30px; width: auto; }
+.site-footer p { color: var(--ink-soft); font-size: var(--step--1); }
+
+@media (max-width: 860px) {
+  .hero .wrap, .about .wrap { grid-template-columns: 1fr; }
+  .hero-art { order: -1; width: min(80%, 320px); }
+  .gallery, .gallery.three { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 16px; }
+  .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .nav a:not(.btn) { display: none; }
+}
+@media (max-width: 520px) {
+  .brand .word { display: none; }
+  .steps { grid-template-columns: 1fr; }
+  section.block { padding-block: 60px; }
+  .facts ul { justify-content: flex-start; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .hero-art::before { animation: none; }
+  .piece figure img { transition: none; }
+}
+</style>
+<!--PREVIEW-HEAD-END-->
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Amai's Candles, home">
+      <img class="mark on-light" src="images/logo-mark.png" alt="" width="686" height="593">
+      <img class="mark on-dark" src="images/logo-mark-light.png" alt="" width="686" height="593">
+      <img class="word on-light" src="images/logo-wordmark.png" alt="Amai's Candles" width="813" height="147">
+      <img class="word on-dark" src="images/logo-wordmark-light.png" alt="Amai's Candles" width="813" height="147">
+    </a>
+    <nav class="nav" aria-label="Main">
+      <a href="#candles">Candles</a>
+      <a href="#crochet">Crochet</a>
+      <a href="#about">About</a>
+      <a class="btn" href="#custom">Custom orders</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-copy">
+        <span class="eyebrow">Amai means mother</span>
+        <h1>Candles and crochet, <em>made with a mother's love.</em></h1>
+        <p class="lede">Hand-poured soy candles and crocheted earrings, necklaces, coasters and pouches. Pick a piece you love, or ask for one made just for you.</p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#custom">Order a custom piece</a>
+          <a class="btn" href="#work">See the work</a>
+        </div>
+      </div>
+      <div class="hero-art">
+        <img class="on-light" src="images/logo-full.png" alt="Amai's Candles logo: a lit candle resting in an open hand" width="837" height="749">
+        <img class="on-dark" src="images/logo-full-light.png" alt="Amai's Candles logo: a lit candle resting in an open hand" width="837" height="749">
+      </div>
+    </div>
+  </section>
+
+  <div class="facts">
+    <ul class="wrap">
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><path class="stroke" d="M12 3c2 3 3 5 0 8-3-3-2-5 0-8z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><rect x="7" y="12" width="10" height="9" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>Hand-poured soy wax candles</li>
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 13c2-1 4-1 6 0l6-5c1-1 3 0 2 2l-6 7c-2 2-5 3-8 2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Crocheted by hand</li>
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.5-7 10-7 10z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>Custom orders welcome</li>
+    </ul>
+  </div>
+
+  <!-- GALLERY: to add a piece, copy one <article> and point the <img> at a new photo in images/work/. -->
+  <section class="block" id="work">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Handmade work</span>
+        <h2>Two crafts, one pair of hands</h2>
+        <p>Hand-poured soy candles and crochet pieces made stitch by stitch. Like something here in a different colour or scent? Ask for it as a custom order.</p>
+      </div>
+
+      <!-- CANDLES: to add a candle, copy one <article> and point the <img> at a new photo in images/work/. -->
+      <div class="category" id="candles">
+        <h3 class="category-title">Candles</h3>
+        <div class="gallery three">
+          <article class="piece">
+            <figure><img src="images/work/candle-pink-daisy-pillar.jpg" alt="A white pillar candle topped with a pink wax daisy, on a wooden mat" width="1200" height="1200" loading="lazy"></figure>
+            <div class="meta">
+              <h3>Pink daisy pillar</h3>
+              <p class="notes">A round white pillar topped with a soft pink wax daisy.</p>
+            </div>
+          </article>
+          <article class="piece">
+            <figure><img src="images/work/candle-green-daisy-ribbed.jpg" alt="A ribbed white candle with a sage-green wax daisy on top" width="1200" height="1200" loading="lazy"></figure>
+            <div class="meta">
+              <h3>Sage daisy ribbed candle</h3>
+              <p class="notes">A ribbed white candle with a sage-green daisy on top.</p>
+            </div>
+          </article>
+          <article class="piece">
+            <figure><img src="images/work/candle-pink-daisy-jar.jpg" alt="A pink daisy candle in a cut-glass jar with its lid lifted" width="1200" height="1200" loading="lazy"></figure>
+            <div class="meta">
+              <h3>Pink daisy jar</h3>
+              <p class="notes">A pink daisy candle poured into a lidded glass jar.</p>
+            </div>
+          </article>
+          <article class="piece">
+            <figure><img src="images/work/candle-bouquet-pillars.jpg" alt="A cream pillar candle topped with pastel wax flowers, with a purple pillar behind it" width="1200" height="1200" loading="lazy"></figure>
+            <div class="meta">
+              <h3>Bouquet pillar</h3>
+              <p class="notes">A cream pillar crowned with a bouquet of wax flowers.</p>
+            </div>
+          </article>
+          <article class="piece">
+            <figure><img src="images/work/candle-ribbed-flower-pillars.jpg" alt="A cream ribbed pillar with an orange flower and a lavender ribbed pillar with a pink flower, on a white tray" width="1200" height="1200" loading="lazy"></figure>
+            <div class="meta">
+              <h3>Ribbed flower pillars</h3>
+              <p class="notes">Cream and lavender ribbed pillars, each with a flower on top.</p>
+            </div>
+          </article>
+          <article class="piece">
+            <figure><img src="images/work/candle-daisy-wax-melts.jpg" alt="Two white daisy-shaped wax melts with purple centres, held in a hand" width="1200" height="1200" loading="lazy"></figure>
+            <div class="meta">
+              <h3>Daisy wax melts</h3>
+              <p class="notes">White and purple daisies to melt in a wax warmer.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <div class="category" id="crochet">
+        <h3 class="category-title">Crochet</h3>
+      <div class="gallery">
+        <article class="piece">
+          <figure><img src="images/work/earring-collection.jpg" alt="A selection of crocheted earrings laid out on a black board: hoops, fans, flowers and tasselled drops in pink, cream, green, blue and red" width="1200" height="1200" loading="lazy"></figure>
+          <div class="meta">
+            <h3>Earring collection</h3>
+            <p class="notes">Fans, flowers, hoops and tasselled drops in every colour.</p>
+          </div>
+        </article>
+        <article class="piece">
+          <figure><img src="images/work/blue-fan-earring.jpg" alt="A turquoise crocheted fan earring held up in a hand" width="1200" height="1200" loading="lazy"></figure>
+          <div class="meta">
+            <h3>Turquoise fan earrings</h3>
+            <p class="notes">A lacy half-moon fan on a silver hook.</p>
+          </div>
+        </article>
+        <article class="piece">
+          <figure><img src="images/work/ivory-flower-earrings.jpg" alt="An ivory crocheted rose earring with a pearl centre, held in a hand" width="1200" height="1200" loading="lazy"></figure>
+          <div class="meta">
+            <h3>Ivory rose earrings</h3>
+            <p class="notes">Layered crochet petals with a pearl centre.</p>
+          </div>
+        </article>
+        <article class="piece">
+          <figure><img src="images/work/tricolour-hoop-earrings.jpg" alt="Interlinked crocheted hoop earrings in saffron, white and green" width="1200" height="1200" loading="lazy"></figure>
+          <div class="meta">
+            <h3>Tricolour hoop earrings</h3>
+            <p class="notes">Saffron, white and green rings, linked together.</p>
+          </div>
+        </article>
+        <article class="piece">
+          <figure><img src="images/work/lilac-fan-earrings.jpg" alt="A pair of lilac crocheted fan earrings on a cream cloth" width="1200" height="1200" loading="lazy"></figure>
+          <div class="meta">
+            <h3>Lilac fan earrings</h3>
+            <p class="notes">A soft lilac pair in a classic fan shape.</p>
+          </div>
+        </article>
+        <article class="piece">
+          <figure><img src="images/work/jewellery-set.jpg" alt="A blue crocheted necklace with matching star earrings, beside pink flower and layered purple earrings" width="1200" height="1200" loading="lazy"></figure>
+          <div class="meta">
+            <h3>Necklace and earring sets</h3>
+            <p class="notes">A star-link necklace with matching earrings, plus flower and layered pairs.</p>
+          </div>
+        </article>
+        <article class="piece">
+          <figure><img src="images/work/coasters.jpg" alt="Crocheted coasters in red, turquoise, beige and cream with lilac edging" width="1200" height="1200" loading="lazy"></figure>
+          <div class="meta">
+            <h3>Coasters</h3>
+            <p class="notes">Scalloped and floral coasters in red, turquoise, beige and cream.</p>
+          </div>
+        </article>
+        <article class="piece">
+          <figure><img src="images/work/drawstring-pouch.jpg" alt="A sea-green crocheted drawstring pouch with white crocheted flowers on the ties" width="1200" height="1200" loading="lazy"></figure>
+          <div class="meta">
+            <h3>Drawstring pouch</h3>
+            <p class="notes">A sea-green pouch with white flower ties.</p>
+          </div>
+        </article>
+      </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT: replace the paragraphs below with your own story. -->
+  <section class="block about" id="about">
+    <div class="wrap">
+      <div class="about-art">
+        <img class="on-light" src="images/tagline-wreath.png" alt="Amai's Candles: scented soy wax candles, hand poured with love" width="640" height="640">
+        <img class="on-dark" src="images/tagline-wreath-light.png" alt="Amai's Candles: scented soy wax candles, hand poured with love" width="640" height="640">
+      </div>
+      <div class="about-copy">
+        <span class="eyebrow">Our story</span>
+        <h2>Amai means mother</h2>
+        <p>That is exactly who makes everything you see here. Every candle is poured by hand with natural soy wax, and every crochet piece is worked stitch by stitch at home, with the same care a mother gives to anything made for her family. No two pieces are ever quite the same.</p>
+        <p>If you have a colour, scent or occasion in mind, from a pair of earrings for a friend to coasters for a new home, we would love to make it for you.</p>
+        <p class="sign">With love, Amai</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="custom">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Custom orders</span>
+        <h2>Made just for you</h2>
+        <p>Gifts, weddings, birthdays or just because. Tell us what you would like and we will make it to order.</p>
+      </div>
+      <ol class="steps">
+        <li><h3>Choose a piece</h3><p>A candle, earrings, a necklace, coasters or a pouch.</p></li>
+        <li><h3>Pick your colours</h3><p>Match an outfit, a room or a wedding palette.</p></li>
+        <li><h3>Add the details</h3><p>A scent for candles, a size, or a date you need it by.</p></li>
+        <li><h3>Send your request</h3><p>We will reply to confirm the details and price.</p></li>
+      </ol>
+      <div id="order-form">
+        <h3>The order form is on its way</h3>
+        <p>Soon you will be able to request a custom piece right here. Until then, get in touch and tell us what you have in mind.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <img class="on-light" src="images/logo-wordmark.png" alt="Amai's Candles" width="813" height="147">
+    <img class="on-dark" src="images/logo-wordmark-light.png" alt="Amai's Candles" width="813" height="147">
+    <p>Handmade candles and crochet, made with a mother's love. © 2026 Amai's Candles</p>
+  </div>
+</footer>
+<!--PREVIEW-END-->
+</body>
+</html>
