@@ -24,9 +24,10 @@
 <title>Amai's Candles | Hand-poured candles and handmade crochet</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Figtree:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,100,1;1,9..144,300..700,100,1&family=Nunito:wght@400;500;600;700&family=Caveat:wght@500;600&display=swap">
 <style>
-/* Layout: a candlelit shop window. Hero beside the hand-held logo, then a photo grid of the handmade work, the maker's story, and the custom order counter. */
+/* Follows the Amai's Candles design system (claude.ai/artifact/VxrFLuvDBsCdP3eZ2JcCNd): wax/paper/ink/flame colours, Fraunces + Nunito + Caveat, pill buttons, handwritten notes.
+   Layout: a candlelit shop window. Hero beside the hand-held logo, then a photo grid of the handmade work, the maker's story, and the custom order counter. */
 :root {
   --wax: #F5EEE2;        /* page ground, the brand's cream */
   --paper: #FBF8F2;      /* raised surfaces */
@@ -39,14 +40,16 @@
   --logo-on-light: inline-block;
   --logo-on-dark: none;
 
-  --font-display: "Young Serif", Georgia, "Times New Roman", serif;
-  --font-body: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-body: "Nunito", "Trebuchet MS", system-ui, sans-serif;
+  --font-accent: "Fraunces", Georgia, serif;
+  --font-script: "Caveat", "Segoe Print", "Bradley Hand", cursive;
 
   --step--1: .875rem;
   --step-0: 1.0625rem;
   --step-1: 1.3rem;
-  --step-2: 1.75rem;
-  --step-3: clamp(2.2rem, 1.4rem + 3.4vw, 3.6rem);
+  --step-2: 1.875rem;
+  --step-3: clamp(2.4rem, 1.5rem + 3.2vw, 3.5rem);
   --radius: 14px;
   --measure: 62ch;
 }
@@ -76,14 +79,14 @@ body {
 img { max-width: 100%; height: auto; }
 a { color: var(--flame-text); text-underline-offset: 3px; }
 :focus-visible { outline: 2px solid var(--flame); outline-offset: 3px; border-radius: 4px; }
-h1, h2, h3 { font-family: var(--font-display); font-weight: 400; line-height: 1.15; text-wrap: balance; margin: 0; }
+h1, h2, h3 { font-family: var(--font-display); font-weight: 500; font-variation-settings: "SOFT" 100, "WONK" 1; line-height: 1.12; text-wrap: balance; margin: 0; }
 p { margin: 0; }
 .wrap { width: 100%; max-width: 1120px; margin-inline: auto; padding-inline: 20px; }
 .on-light { display: var(--logo-on-light); }
 .on-dark { display: var(--logo-on-dark); }
 .eyebrow {
-  font-size: var(--step--1); font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
-  color: var(--flame-text);
+  font-family: var(--font-script); font-size: 1.45rem; font-weight: 600; line-height: 1;
+  color: var(--flame-text); transform: rotate(-1.5deg); transform-origin: left center; display: inline-block; justify-self: start;
 }
 
 /* Header */
@@ -98,14 +101,14 @@ p { margin: 0; }
 .brand .mark { height: 46px; width: auto; }
 .brand .word { height: 26px; width: auto; }
 .nav { display: flex; gap: 22px; align-items: center; flex-wrap: wrap; }
-.nav a { color: var(--ink); text-decoration: none; font-weight: 500; font-size: .98rem; }
+.nav a { color: var(--ink); text-decoration: none; font-weight: 600; font-size: 1rem; }
 .nav a:hover { color: var(--flame-text); }
 .nav .btn { padding: 8px 16px; }
 
 .btn {
   display: inline-flex; align-items: center; gap: 8px;
   padding: 12px 22px; border-radius: 999px;
-  font: 600 1rem var(--font-body); text-decoration: none;
+  font: 700 1rem var(--font-body); text-decoration: none;
   border: 1.5px solid var(--ink); color: var(--ink); background: transparent;
   transition: background .2s, color .2s;
 }
@@ -120,7 +123,7 @@ p { margin: 0; }
 }
 .hero-copy { display: grid; gap: 22px; min-width: 0; }
 .hero h1 { font-size: var(--step-3); }
-.hero h1 em { font-style: normal; color: var(--flame-text); }
+.hero h1 em { font-family: var(--font-accent); font-style: italic; font-weight: 400; color: var(--flame-text); }
 .hero .lede { font-size: var(--step-1); color: var(--ink-soft); max-width: 34ch; line-height: 1.5; }
 .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
 .hero-art { position: relative; justify-self: center; width: min(100%, 420px); }
@@ -178,12 +181,12 @@ section.block { padding-block: 84px; }
 .about-copy { display: grid; gap: 18px; min-width: 0; max-width: var(--measure); }
 .about-copy h2 { font-size: var(--step-2); }
 .about-copy p { color: var(--ink-soft); }
-.about-copy .sign { font-family: var(--font-display); color: var(--ink); font-size: var(--step-1); }
+.about-copy .sign { font-family: var(--font-script); color: var(--ink); font-size: 2rem; font-weight: 600; line-height: 1.1; }
 
 /* Custom orders */
 .steps { list-style: none; margin: 0 0 36px; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; counter-reset: step; }
 .steps li { display: grid; gap: 6px; padding-top: 16px; border-top: 1.5px solid var(--ink); counter-increment: step; min-width: 0; }
-.steps li::before { content: "Step " counter(step); font-size: var(--step--1); font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--flame-text); }
+.steps li::before { content: "Step " counter(step); font-family: var(--font-script); font-size: 1.45rem; font-weight: 600; line-height: 1; color: var(--flame-text); transform: rotate(-1.5deg); transform-origin: left center; justify-self: start; }
 .steps h3 { font-size: var(--step-1); }
 .steps p { color: var(--ink-soft); font-size: .98rem; }
 /* The custom order form goes inside #order-form */
@@ -199,6 +202,7 @@ section.block { padding-block: 84px; }
 .site-footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 20px; }
 .site-footer img { height: 30px; width: auto; }
 .site-footer p { color: var(--ink-soft); font-size: var(--step--1); }
+.site-footer .script { font-family: var(--font-script); color: var(--ink); font-size: 2rem; font-weight: 600; line-height: 1; }
 
 @media (max-width: 860px) {
   .hero .wrap, .about .wrap { grid-template-columns: 1fr; }
@@ -423,7 +427,7 @@ section.block { padding-block: 84px; }
       </ol>
       <div id="order-form">
         <h3>The order form is on its way</h3>
-        <p>Soon you will be able to request a custom piece right here. Until then, get in touch and tell us what you have in mind.</p>
+        <p>Soon you will be able to request a custom piece right here. Until then, get in touch and tell me what you have in mind.</p>
       </div>
     </div>
   </section>
@@ -433,6 +437,7 @@ section.block { padding-block: 84px; }
   <div class="wrap">
     <img class="on-light" src="images/logo-wordmark.png" alt="Amai's Candles" width="813" height="147">
     <img class="on-dark" src="images/logo-wordmark-light.png" alt="Amai's Candles" width="813" height="147">
+    <p class="script">Handpoured with love</p>
     <p>Candles and crochet, made by hand at home. © 2026 Amai's Candles</p>
   </div>
 </footer>
