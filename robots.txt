@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ayushthaosen-gif.github.io/AmaisCandles/sitemap.xml
