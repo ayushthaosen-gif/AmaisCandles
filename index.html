@@ -189,13 +189,36 @@ section.block { padding-block: 84px; }
 .steps li::before { content: "Step " counter(step); font-family: var(--font-script); font-size: 1.45rem; font-weight: 600; line-height: 1; color: var(--flame-text); transform: rotate(-1.5deg); transform-origin: left center; justify-self: start; }
 .steps h3 { font-size: var(--step-1); }
 .steps p { color: var(--ink-soft); font-size: .98rem; }
-/* The custom order form goes inside #order-form */
+/* The custom order form, handled by Netlify Forms */
 #order-form {
-  border: 1.5px dashed var(--line); border-radius: var(--radius); background: var(--paper);
-  padding: 40px 24px; display: grid; justify-items: center; gap: 10px; text-align: center;
+  border: 1.5px solid var(--line); border-radius: var(--radius); background: var(--paper);
+  padding: clamp(24px, 4vw, 40px);
 }
-#order-form h3 { font-size: var(--step-1); }
-#order-form p { color: var(--ink-soft); max-width: 48ch; }
+#order-form h3 { font-size: var(--step-2); }
+#order-form .note, .order-thanks .note { font-family: var(--font-script); font-size: 1.45rem; font-weight: 600; line-height: 1.1; color: var(--flame-text); transform: rotate(-1deg); transform-origin: left center; margin-top: 4px; }
+.order { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 20px; margin-top: 26px; }
+.order .full { grid-column: 1 / -1; }
+.order label, .order legend { display: grid; gap: 6px; font-weight: 700; font-size: .98rem; color: var(--ink); min-width: 0; }
+.order .hint { font-weight: 400; color: var(--ink-soft); font-size: var(--step--1); }
+.order input, .order select, .order textarea {
+  width: 100%; font: 400 1rem var(--font-body); color: var(--ink);
+  background: var(--wax); border: 1.5px solid var(--line); border-radius: 10px; padding: 11px 13px;
+}
+.order textarea { min-height: 110px; resize: vertical; }
+.order input:focus, .order select:focus, .order textarea:focus { outline: none; border-color: var(--flame); box-shadow: 0 0 0 3px var(--glow); }
+.order fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
+.order legend { padding: 0; }
+.order .choices { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 6px; }
+.order .choices label { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; padding: 9px 16px; border: 1.5px solid var(--line); border-radius: 999px; background: var(--wax); cursor: pointer; }
+.order .choices input { width: auto; accent-color: var(--flame); margin: 0; }
+.order .choices label:has(input:checked) { border-color: var(--flame); box-shadow: 0 0 0 3px var(--glow); }
+.order .send { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; }
+.order button.btn { cursor: pointer; }
+.order .bot { position: absolute; left: -9999px; }
+.order-error { color: var(--flame-text); font-weight: 700; }
+[hidden] { display: none !important; }
+.order-thanks { display: grid; gap: 10px; justify-items: start; }
+.order-thanks .note { font-size: 2rem; }
 
 /* Footer */
 .site-footer { padding-block: 48px 40px; border-top: 1px solid var(--line); }
@@ -210,6 +233,7 @@ section.block { padding-block: 84px; }
   .gallery, .gallery.three { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 16px; }
   .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .nav a:not(.btn) { display: none; }
+  .order { grid-template-columns: 1fr; }
 }
 @media (max-width: 520px) {
   .brand .word { display: none; }
@@ -426,9 +450,80 @@ section.block { padding-block: 84px; }
         <li><h3>Send it to me</h3><p>I'll get back to you to go over the details and the price.</p></li>
       </ol>
       <div id="order-form">
-        <h3>The order form is on its way</h3>
-        <p>Soon you will be able to request a custom piece right here. Until then, get in touch and tell me what you have in mind.</p>
+        <div class="order-intro">
+          <h3>Tell me what you'd like</h3>
+          <p class="note">I read every one of these myself.</p>
+        </div>
+        <form class="order" name="custom-order" method="POST" action="/thanks.html" data-netlify="true" netlify-honeypot="bot-field">
+          <input type="hidden" name="form-name" value="custom-order">
+          <p class="bot"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+
+          <label>Your name
+            <input type="text" name="name" autocomplete="name" required>
+          </label>
+          <label>Email
+            <input type="email" name="email" autocomplete="email" required>
+          </label>
+          <label>Phone or WhatsApp <span class="hint">If you'd rather I message you</span>
+            <input type="tel" name="phone" autocomplete="tel">
+          </label>
+          <fieldset>
+            <legend>What would you like?</legend>
+            <div class="choices">
+              <label><input type="radio" name="product" value="Candle" required> A candle</label>
+              <label><input type="radio" name="product" value="Crochet"> Crochet</label>
+            </div>
+          </fieldset>
+          <label class="full">Tell me about it <span class="hint">Colours, a scent for candles, the size, and what it's for</span>
+            <textarea name="details" required></textarea>
+          </label>
+          <label>How many?
+            <input type="number" name="quantity" min="1" value="1" inputmode="numeric">
+          </label>
+          <label>When do you need it by? <span class="hint">Leave it blank if there's no rush</span>
+            <input type="date" name="date-needed">
+          </label>
+          <label class="full">Anything else? <span class="hint">A gift message, an outfit you're matching, a photo you can send me later</span>
+            <textarea name="notes"></textarea>
+          </label>
+          <div class="send full">
+            <button class="btn primary" type="submit">Send my order</button>
+            <span class="hint">There's nothing to pay yet. I'll reply with a price first.</span>
+          </div>
+          <p class="order-error full" role="alert" hidden>Sorry, that didn't go through. Please try again in a moment.</p>
+        </form>
+        <div class="order-thanks" role="status" tabindex="-1" hidden>
+          <h3>Thank you, I've got your order</h3>
+          <p>I'll write back soon to talk through the details and the price.</p>
+          <p class="note">With love, Amai</p>
+        </div>
       </div>
+      <script>
+        (function () {
+          var box = document.getElementById('order-form');
+          var form = box.querySelector('form');
+          if (!form || !window.fetch) return;
+          form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            var btn = form.querySelector('button[type="submit"]');
+            var err = form.querySelector('.order-error');
+            btn.disabled = true; err.hidden = true;
+            fetch('/', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+              body: new URLSearchParams(new FormData(form)).toString()
+            }).then(function (r) {
+              if (!r.ok) throw new Error(r.status);
+              form.hidden = true;
+              box.querySelector('.order-intro').hidden = true;
+              var thanks = box.querySelector('.order-thanks');
+              thanks.hidden = false; thanks.focus();
+            }).catch(function () {
+              err.hidden = false; btn.disabled = false;
+            });
+          });
+        })();
+      </script>
     </div>
   </section>
 </main>
