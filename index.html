@@ -225,6 +225,8 @@ section.block { padding-block: 84px; }
 .site-footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 20px; }
 .site-footer img { height: 30px; width: auto; }
 .site-footer p { color: var(--ink-soft); font-size: var(--step--1); }
+.site-footer a, .order-alt a { color: var(--flame-text); font-weight: 700; }
+.order-alt { color: var(--ink-soft); }
 .site-footer .script { font-family: var(--font-script); color: var(--ink); font-size: 2rem; font-weight: 600; line-height: 1; }
 
 @media (max-width: 860px) {
@@ -521,7 +523,7 @@ section.block { padding-block: 84px; }
         <p>Tell me what you'd like and I'll make it to order. Here's how it works.</p>
       </div>
       <ol class="steps">
-        <li><h3>Choose a piece</h3><p>A candle, earrings, a necklace, coasters or a pouch.</p></li>
+        <li><h3>Choose a piece</h3><p>A candle, earrings, a necklace, coasters, a pouch or a poster.</p></li>
         <li><h3>Pick your colours</h3><p>If you're matching an outfit or a room, tell me.</p></li>
         <li><h3>Add the details</h3><p>The size, a scent for candles, and when you need it by.</p></li>
         <li><h3>Send it to me</h3><p>I'll get back to you to go over the details and the price.</p></li>
@@ -530,6 +532,7 @@ section.block { padding-block: 84px; }
         <div class="order-intro">
           <h3>Tell me what you'd like</h3>
           <p class="note">I read every one of these myself.</p>
+          <p class="order-alt">You can also message me on <a href="https://www.instagram.com/amais.candles/" target="_blank" rel="noopener">Instagram @amais.candles</a>.</p>
         </div>
         <form class="order" name="custom-order" method="POST" action="/thanks.html" data-netlify="true" netlify-honeypot="bot-field">
           <input type="hidden" name="form-name" value="custom-order">
@@ -549,6 +552,7 @@ section.block { padding-block: 84px; }
             <div class="choices">
               <label><input type="radio" name="product" value="Candle" required> A candle</label>
               <label><input type="radio" name="product" value="Crochet"> Crochet</label>
+              <label><input type="radio" name="product" value="Poster"> A poster</label>
             </div>
           </fieldset>
           <label class="full">Tell me about it <span class="hint">Colours, a scent for candles, the size, and what it's for</span>
@@ -610,6 +614,7 @@ section.block { padding-block: 84px; }
     <img class="on-light" src="images/logo-wordmark.png" alt="Amai's Candles" width="813" height="147">
     <img class="on-dark" src="images/logo-wordmark-light.png" alt="Amai's Candles" width="813" height="147">
     <p class="script">Handpoured with love</p>
+    <p><a href="https://www.instagram.com/amais.candles/" target="_blank" rel="noopener">Instagram @amais.candles</a></p>
     <p>Candles and crochet, made by hand at home. © 2026 Amai's Candles</p>
   </div>
 </footer>
