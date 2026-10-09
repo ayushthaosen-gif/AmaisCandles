@@ -21,7 +21,7 @@
 <meta name="twitter:description" content="Soy candles and crochet earrings, necklaces, coasters and pouches, all made by hand at home. Have a look, or ask me to make something for you.">
 <meta name="twitter:image" content="https://amaiscandles.netlify.app/images/social-preview.jpg">
 <!--PREVIEW-START-->
-<title>Amai's Candles | Hand-poured candles and handmade crochet</title>
+<title data-text="page.title">Amai's Candles | Hand-poured candles and handmade crochet</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,100,1;1,9..144,300..700,100,1&family=Nunito:wght@400;500;600;700&family=Caveat:wght@500;600&display=swap">
@@ -262,10 +262,10 @@ section.block { padding-block: 84px; }
       <img class="word on-dark" src="images/logo-wordmark-light.png" alt="Amai's Candles" width="813" height="147">
     </a>
     <nav class="nav" aria-label="Main">
-      <a href="#candles">Candles</a>
-      <a href="#crochet">Crochet</a>
-      <a href="#about">About</a>
-      <a class="btn" href="#custom">Custom orders</a>
+      <a href="#candles" data-text="nav.candles">Candles</a>
+      <a href="#crochet" data-text="nav.crochet">Crochet</a>
+      <a href="#about" data-text="nav.about">About</a>
+      <a class="btn" href="#custom" data-text="nav.custom">Custom orders</a>
     </nav>
   </div>
 </header>
@@ -274,12 +274,12 @@ section.block { padding-block: 84px; }
   <section class="hero">
     <div class="wrap">
       <div class="hero-copy">
-        <span class="eyebrow">Amai means mother</span>
-        <h1>Candles and crochet, <em>made by hand at home.</em></h1>
-        <p class="lede">I pour soy candles and crochet earrings, necklaces, coasters and pouches. If you see something you like in a different colour, just ask.</p>
+        <span class="eyebrow" data-text="hero.eyebrow">Amai means mother</span>
+        <h1><span data-text="hero.title">Candles and crochet,</span> <em data-text="hero.title-accent">made by hand at home.</em></h1>
+        <p class="lede" data-text="hero.intro">I pour soy candles and crochet earrings, necklaces, coasters and pouches. If you see something you like in a different colour, just ask.</p>
         <div class="hero-actions">
-          <a class="btn primary" href="#custom">Ask for something custom</a>
-          <a class="btn" href="#work">Have a look</a>
+          <a class="btn primary" href="#custom" data-text="hero.button-custom">Ask for something custom</a>
+          <a class="btn" href="#work" data-text="hero.button-look">Have a look</a>
         </div>
       </div>
       <div class="hero-art">
@@ -291,22 +291,21 @@ section.block { padding-block: 84px; }
 
   <div class="facts">
     <ul class="wrap">
-      <li><svg viewBox="0 0 24 24" aria-hidden="true"><path class="stroke" d="M12 3c2 3 3 5 0 8-3-3-2-5 0-8z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><rect x="7" y="12" width="10" height="9" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>Soy wax candles, poured by hand</li>
-      <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 13c2-1 4-1 6 0l6-5c1-1 3 0 2 2l-6 7c-2 2-5 3-8 2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Every crochet piece made by me</li>
-      <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.5-7 10-7 10z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>Happy to take custom orders</li>
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><path class="stroke" d="M12 3c2 3 3 5 0 8-3-3-2-5 0-8z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><rect x="7" y="12" width="10" height="9" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/></svg><span data-text="facts.1">Soy wax candles, poured by hand</span></li>
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 13c2-1 4-1 6 0l6-5c1-1 3 0 2 2l-6 7c-2 2-5 3-8 2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-text="facts.2">Every crochet piece made by me</span></li>
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.5-7 10-7 10z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg><span data-text="facts.3">Happy to take custom orders</span></li>
     </ul>
   </div>
 
-  <!-- GALLERY: to add a piece, copy one <article> and point the <img> at a new photo in images/work/. -->
+  <!-- GALLERY: products are managed from the admin page (/admin/). The pieces below are the fallback shown if Supabase can't be reached. -->
   <section class="block" id="work">
     <div class="wrap">
       <div class="section-head">
-        <span class="eyebrow">What I make</span>
-        <h2>A few things I've made</h2>
-        <p>These are some of my candles and crochet pieces. If you like one but want it in another colour, let me know and I'll make it for you.</p>
+        <span class="eyebrow" data-text="work.eyebrow">What I make</span>
+        <h2 data-text="work.title">A few things I've made</h2>
+        <p data-text="work.intro">These are some of my candles and crochet pieces. If you like one but want it in another colour, let me know and I'll make it for you.</p>
       </div>
 
-      <!-- CANDLES: to add a candle, copy one <article> and point the <img> at a new photo in images/work/. -->
       <div class="category" id="candles">
         <h3 class="category-title">Candles</h3>
         <div class="gallery">
@@ -504,13 +503,13 @@ section.block { padding-block: 84px; }
         <img class="on-dark" src="images/tagline-wreath-light.png" alt="Amai's Candles: scented soy wax candles, hand poured with love" width="640" height="640">
       </div>
       <div class="about-copy">
-        <span class="eyebrow">About me</span>
-        <h2>Why it's called Amai's</h2>
-        <p>Amai means mother. My mother is the one who taught me the basics, and I never forgot the feeling of making something with my own hands next to her.</p>
-        <p>Then I became a doctor, and for all my years in service there was simply no time for it. There was always another patient, another shift, and this quietly got put away.</p>
-        <p>After I retired, I picked it up again. The moment I started, it all came back, and so did so many memories of her. Now I pour candles and crochet at home, and every piece carries a little of what she taught me.</p>
-        <p>If you'd like something made as a gift or just for yourself, tell me what you have in mind and I'll make it for you.</p>
-        <p class="sign">With love, Amai</p>
+        <span class="eyebrow" data-text="about.eyebrow">About me</span>
+        <h2 data-text="about.title">Why it's called Amai's</h2>
+        <p data-text="about.paragraph-1">Amai means mother. My mother is the one who taught me the basics, and I never forgot the feeling of making something with my own hands next to her.</p>
+        <p data-text="about.paragraph-2">Then I became a doctor, and for all my years in service there was simply no time for it. There was always another patient, another shift, and this quietly got put away.</p>
+        <p data-text="about.paragraph-3">After I retired, I picked it up again. The moment I started, it all came back, and so did so many memories of her. Now I pour candles and crochet at home, and every piece carries a little of what she taught me.</p>
+        <p data-text="about.paragraph-4">If you'd like something made as a gift or just for yourself, tell me what you have in mind and I'll make it for you.</p>
+        <p class="sign" data-text="about.signature">With love, Amai</p>
       </div>
     </div>
   </section>
@@ -518,65 +517,65 @@ section.block { padding-block: 84px; }
   <section class="block" id="custom">
     <div class="wrap">
       <div class="section-head">
-        <span class="eyebrow">Custom orders</span>
-        <h2>Want something made for you?</h2>
-        <p>Tell me what you'd like and I'll make it to order. Here's how it works.</p>
+        <span class="eyebrow" data-text="custom.eyebrow">Custom orders</span>
+        <h2 data-text="custom.title">Want something made for you?</h2>
+        <p data-text="custom.intro">Tell me what you'd like and I'll make it to order. Here's how it works.</p>
       </div>
       <ol class="steps">
-        <li><h3>Choose a piece</h3><p>A candle, earrings, a necklace, coasters, a pouch or a poster.</p></li>
-        <li><h3>Pick your colours</h3><p>If you're matching an outfit or a room, tell me.</p></li>
-        <li><h3>Add the details</h3><p>The size, a scent for candles, and when you need it by.</p></li>
-        <li><h3>Send it to me</h3><p>I'll get back to you to go over the details and the price.</p></li>
+        <li><h3 data-text="custom.step-1-title">Choose a piece</h3><p data-text="custom.step-1-text">A candle, earrings, a necklace, coasters, a pouch or a poster.</p></li>
+        <li><h3 data-text="custom.step-2-title">Pick your colours</h3><p data-text="custom.step-2-text">If you're matching an outfit or a room, tell me.</p></li>
+        <li><h3 data-text="custom.step-3-title">Add the details</h3><p data-text="custom.step-3-text">The size, a scent for candles, and when you need it by.</p></li>
+        <li><h3 data-text="custom.step-4-title">Send it to me</h3><p data-text="custom.step-4-text">I'll get back to you to go over the details and the price.</p></li>
       </ol>
       <div id="order-form">
         <div class="order-intro">
-          <h3>Tell me what you'd like</h3>
-          <p class="note">I read every one of these myself.</p>
-          <p class="order-alt">You can also message me on <a href="https://www.instagram.com/amais.candles/" target="_blank" rel="noopener">Instagram @amais.candles</a>.</p>
+          <h3 data-text="form.title">Tell me what you'd like</h3>
+          <p class="note" data-text="form.note">I read every one of these myself.</p>
+          <p class="order-alt"><span data-text="form.instagram-intro">You can also message me on</span> <a href="https://www.instagram.com/amais.candles/" target="_blank" rel="noopener" data-text="form.instagram-link">Instagram @amais.candles</a>.</p>
         </div>
         <form class="order" name="custom-order" method="POST" action="/thanks.html" data-netlify="true" netlify-honeypot="bot-field">
           <input type="hidden" name="form-name" value="custom-order">
           <p class="bot"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
 
-          <label>Your name
+          <label><span data-text="form.name">Your name</span>
             <input type="text" name="name" autocomplete="name" required>
           </label>
-          <label>Email
+          <label><span data-text="form.email">Email</span>
             <input type="email" name="email" autocomplete="email" required>
           </label>
-          <label>Phone or WhatsApp <span class="hint">If you'd rather I message you</span>
+          <label><span data-text="form.phone">Phone or WhatsApp</span> <span class="hint" data-text="form.phone-hint">If you'd rather I message you</span>
             <input type="tel" name="phone" autocomplete="tel">
           </label>
           <fieldset>
-            <legend>What would you like?</legend>
+            <legend data-text="form.product">What would you like?</legend>
             <div class="choices">
-              <label><input type="radio" name="product" value="Candle" required> A candle</label>
-              <label><input type="radio" name="product" value="Crochet"> Crochet</label>
-              <label><input type="radio" name="product" value="Poster"> A poster</label>
+              <label><input type="radio" name="product" value="Candle" required> <span data-text="form.product-candle">A candle</span></label>
+              <label><input type="radio" name="product" value="Crochet"> <span data-text="form.product-crochet">Crochet</span></label>
+              <label><input type="radio" name="product" value="Poster"> <span data-text="form.product-poster">A poster</span></label>
             </div>
           </fieldset>
-          <label class="full">Tell me about it <span class="hint">Colours, a scent for candles, the size, and what it's for</span>
+          <label class="full"><span data-text="form.details">Tell me about it</span> <span class="hint" data-text="form.details-hint">Colours, a scent for candles, the size, and what it's for</span>
             <textarea name="details" required></textarea>
           </label>
-          <label>How many?
+          <label><span data-text="form.quantity">How many?</span>
             <input type="number" name="quantity" min="1" value="1" inputmode="numeric">
           </label>
-          <label>When do you need it by? <span class="hint">Leave it blank if there's no rush</span>
+          <label><span data-text="form.date">When do you need it by?</span> <span class="hint" data-text="form.date-hint">Leave it blank if there's no rush</span>
             <input type="date" name="date-needed">
           </label>
-          <label class="full">Anything else? <span class="hint">A gift message, an outfit you're matching, a photo you can send me later</span>
+          <label class="full"><span data-text="form.notes">Anything else?</span> <span class="hint" data-text="form.notes-hint">A gift message, an outfit you're matching, a photo you can send me later</span>
             <textarea name="notes"></textarea>
           </label>
           <div class="send full">
-            <button class="btn primary" type="submit">Send my order</button>
-            <span class="hint">There's nothing to pay yet. I'll reply with a price first.</span>
+            <button class="btn primary" type="submit" data-text="form.button">Send my order</button>
+            <span class="hint" data-text="form.button-hint">There's nothing to pay yet. I'll reply with a price first.</span>
           </div>
-          <p class="order-error full" role="alert" hidden>Sorry, that didn't go through. Please try again in a moment.</p>
+          <p class="order-error full" role="alert" hidden data-text="form.error">Sorry, that didn't go through. Please try again in a moment.</p>
         </form>
         <div class="order-thanks" role="status" tabindex="-1" hidden>
-          <h3>Thank you, I've got your order</h3>
-          <p>I'll write back soon to talk through the details and the price.</p>
-          <p class="note">With love, Amai</p>
+          <h3 data-text="form.thanks-title">Thank you, I've got your order</h3>
+          <p data-text="form.thanks-text">I'll write back soon to talk through the details and the price.</p>
+          <p class="note" data-text="form.thanks-signature">With love, Amai</p>
         </div>
       </div>
       <script>
@@ -613,11 +612,13 @@ section.block { padding-block: 84px; }
   <div class="wrap">
     <img class="on-light" src="images/logo-wordmark.png" alt="Amai's Candles" width="813" height="147">
     <img class="on-dark" src="images/logo-wordmark-light.png" alt="Amai's Candles" width="813" height="147">
-    <p class="script">Handpoured with love</p>
-    <p><a href="https://www.instagram.com/amais.candles/" target="_blank" rel="noopener">Instagram @amais.candles</a></p>
-    <p>Candles and crochet, made by hand at home. © 2026 Amai's Candles</p>
+    <p class="script" data-text="footer.tagline">Handpoured with love</p>
+    <p><a href="https://www.instagram.com/amais.candles/" target="_blank" rel="noopener" data-text="footer.instagram">Instagram @amais.candles</a></p>
+    <p data-text="footer.small-print">Candles and crochet, made by hand at home. © 2026 Amai's Candles</p>
   </div>
 </footer>
+<script src="config.js"></script>
+<script src="js/live-content.js"></script>
 <!--PREVIEW-END-->
 </body>
 </html>
