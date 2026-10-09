@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
-<title>Thank you | Amai's Candles</title>
+<title data-text="thanks.page-title">Thank you | Amai's Candles</title>
 <link rel="icon" type="image/png" href="images/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,10 +25,12 @@ a:hover { background: var(--flame); color: #2B211C; }
 </head>
 <body>
 <main>
-  <h1>Thank you, I've got your order</h1>
-  <p>I'll write back soon to talk through the details and the price.</p>
-  <p class="note">With love, Amai</p>
-  <a href="/">Back to the shop</a>
+  <h1 data-text="thanks.title">Thank you, I've got your order</h1>
+  <p data-text="thanks.text">I'll write back soon to talk through the details and the price.</p>
+  <p class="note" data-text="thanks.signature">With love, Amai</p>
+  <a href="/" data-text="thanks.button">Back to the shop</a>
 </main>
+<script src="config.js"></script>
+<script src="js/live-content.js"></script>
 </body>
 </html>

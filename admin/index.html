@@ -1,0 +1,667 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Shop admin | Amai's Candles</title>
+<link rel="icon" type="image/png" href="../images/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,500,100,1&family=Nunito:wght@400;600;700&family=Caveat:wght@600&display=swap">
+<style>
+/* Same wax/paper/ink/flame palette and fonts as the public site. */
+:root {
+  --wax: #F5EEE2; --paper: #FBF8F2; --ink: #2B211C; --ink-soft: #6A594C; --line: #DCCDB9;
+  --flame: #F39A2B; --flame-text: #A9560B; --glow: rgba(243,154,43,.28); --danger: #B3261E;
+  --font-display: "Fraunces", Georgia, serif; --font-body: "Nunito", system-ui, sans-serif; --font-script: "Caveat", cursive;
+  --radius: 14px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --wax: #1C1612; --paper: #261E18; --ink: #F1E6D4; --ink-soft: #BDAA96; --line: #45372C;
+    --flame: #F6A845; --flame-text: #F6B35E; --glow: rgba(246,168,69,.22); --danger: #F2B8B5; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --wax: #1C1612; --paper: #261E18; --ink: #F1E6D4; --ink-soft: #BDAA96; --line: #45372C;
+  --flame: #F6A845; --flame-text: #F6B35E; --glow: rgba(246,168,69,.22); --danger: #F2B8B5; color-scheme: dark;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--wax); color: var(--ink); font: 400 1.0625rem/1.55 var(--font-body); -webkit-font-smoothing: antialiased; }
+h1, h2, h3 { font-family: var(--font-display); font-weight: 500; font-variation-settings: "SOFT" 100, "WONK" 1; line-height: 1.15; margin: 0; }
+p { margin: 0; }
+a { color: var(--flame-text); }
+img { max-width: 100%; }
+[hidden] { display: none !important; }
+:focus-visible { outline: 2px solid var(--flame); outline-offset: 2px; border-radius: 4px; }
+.wrap { width: 100%; max-width: 920px; margin-inline: auto; padding-inline: 16px; }
+.muted { color: var(--ink-soft); }
+.script { font-family: var(--font-script); font-size: 1.5rem; color: var(--flame-text); line-height: 1; }
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  padding: 10px 18px; border-radius: 999px; border: 1.5px solid var(--ink);
+  background: transparent; color: var(--ink); font: 700 .98rem var(--font-body); text-decoration: none; cursor: pointer;
+}
+.btn:hover { background: var(--ink); color: var(--wax); }
+.btn.primary { background: var(--ink); color: var(--wax); }
+.btn.primary:hover { background: var(--flame); border-color: var(--flame); color: #2B211C; }
+.btn.small { padding: 6px 12px; font-size: .9rem; }
+.btn.danger { border-color: var(--danger); color: var(--danger); }
+.btn.danger:hover { background: var(--danger); color: var(--paper); }
+.btn:disabled { opacity: .5; cursor: default; pointer-events: none; }
+
+label { display: grid; gap: 6px; font-weight: 700; font-size: .98rem; }
+.hint { font-weight: 400; color: var(--ink-soft); font-size: .875rem; }
+input[type=text], input[type=email], input[type=password], select, textarea {
+  width: 100%; font: 400 1rem var(--font-body); color: var(--ink);
+  background: var(--wax); border: 1.5px solid var(--line); border-radius: 10px; padding: 10px 12px;
+}
+textarea { resize: vertical; min-height: 44px; }
+input:focus, select:focus, textarea:focus { outline: none; border-color: var(--flame); box-shadow: 0 0 0 3px var(--glow); }
+.check { display: flex; align-items: center; gap: 10px; font-weight: 600; }
+.check input { width: 20px; height: 20px; accent-color: var(--flame); }
+
+/* Login */
+.login { min-height: 100vh; display: grid; place-items: center; padding: 24px 16px; }
+.card { background: var(--paper); border: 1.5px solid var(--line); border-radius: var(--radius); padding: clamp(22px, 5vw, 36px); }
+.login .card { width: min(100%, 420px); display: grid; gap: 16px; }
+.login img { width: 180px; justify-self: center; }
+.msg { font-weight: 600; color: var(--flame-text); }
+.msg.error { color: var(--danger); }
+.linkish { background: none; border: 0; padding: 0; color: var(--flame-text); font: 600 .95rem var(--font-body); text-decoration: underline; cursor: pointer; justify-self: start; }
+
+/* App */
+.top { position: sticky; top: 0; z-index: 5; background: color-mix(in srgb, var(--wax) 90%, transparent); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-block: 10px; flex-wrap: wrap; }
+.top .brand { display: flex; align-items: center; gap: 10px; }
+.top .brand img { height: 40px; width: auto; }
+.top .actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.tabs { display: flex; gap: 6px; margin: 22px 0 18px; border-bottom: 1.5px solid var(--line); }
+.tabs button { background: none; border: 0; padding: 10px 14px; font: 700 1rem var(--font-body); color: var(--ink-soft); cursor: pointer; border-bottom: 3px solid transparent; margin-bottom: -1.5px; }
+.tabs button[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--flame); }
+main { padding-bottom: 96px; }
+.bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 18px; }
+
+.cat { margin-bottom: 30px; }
+.cat h2 { font-size: 1.5rem; margin-bottom: 10px; }
+.item {
+  display: grid; grid-template-columns: 72px minmax(0, 1fr) auto; gap: 14px; align-items: center;
+  background: var(--paper); border: 1.5px solid var(--line); border-radius: 12px; padding: 10px; margin-bottom: 8px;
+}
+.item img { width: 72px; height: 72px; object-fit: cover; border-radius: 8px; background: var(--wax); display: block; }
+.item h3 { font-size: 1.1rem; }
+.item p { color: var(--ink-soft); font-size: .92rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.item.off { opacity: .6; }
+.badge { font: 700 .75rem var(--font-body); text-transform: uppercase; letter-spacing: .04em; background: var(--line); color: var(--ink); border-radius: 999px; padding: 2px 8px; margin-left: 6px; vertical-align: middle; }
+.item .controls { display: flex; gap: 6px; flex-wrap: wrap; justify-content: flex-end; }
+.icon { width: 36px; height: 36px; padding: 0; border-radius: 50%; }
+
+/* Product editor */
+dialog { border: 1.5px solid var(--line); border-radius: var(--radius); background: var(--paper); color: var(--ink); padding: 0; width: min(100% - 24px, 560px); max-height: calc(100vh - 24px); }
+dialog::backdrop { background: rgba(28, 22, 18, .55); }
+dialog form { display: grid; gap: 16px; padding: clamp(18px, 4vw, 28px); }
+.photo-pick { display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 14px; align-items: center; }
+.photo-pick .preview { width: 120px; height: 120px; border-radius: 10px; border: 1.5px dashed var(--line); background: var(--wax) center / cover no-repeat; display: grid; place-items: center; color: var(--ink-soft); font-size: .85rem; text-align: center; }
+.photo-pick input[type=file] { font: 400 .95rem var(--font-body); max-width: 100%; }
+.row { display: flex; gap: 10px; justify-content: flex-end; flex-wrap: wrap; }
+
+/* Site text */
+.group { margin-bottom: 26px; }
+.group h2 { font-size: 1.4rem; margin-bottom: 10px; }
+.group .card { display: grid; gap: 14px; padding: 18px; }
+.field .label-row { display: flex; justify-content: space-between; gap: 10px; align-items: baseline; }
+.field.changed textarea { border-color: var(--flame); }
+.field .reset { font-size: .85rem; }
+.savebar {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 6;
+  background: var(--paper); border-top: 1.5px solid var(--line); padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
+}
+.savebar .wrap { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 0; }
+
+.toast { position: fixed; left: 50%; bottom: 84px; transform: translateX(-50%); background: var(--ink); color: var(--wax); padding: 10px 18px; border-radius: 999px; font-weight: 700; z-index: 20; max-width: calc(100% - 32px); text-align: center; }
+.toast.error { background: var(--danger); color: var(--paper); }
+
+@media (max-width: 600px) {
+  .item { grid-template-columns: 56px minmax(0, 1fr); }
+  .item img { width: 56px; height: 56px; }
+  .item .controls { grid-column: 1 / -1; justify-content: flex-start; }
+  .photo-pick { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div id="setup" class="login" hidden>
+  <div class="card">
+    <h1>Almost there</h1>
+    <p class="muted">The admin page isn't connected to Supabase yet. Follow the steps in <code>ADMIN-SETUP.md</code>, then add the project URL and key to <code>config.js</code>.</p>
+  </div>
+</div>
+
+<div id="login" class="login" hidden>
+  <form class="card" id="login-form">
+    <img src="../images/logo-full.png" alt="Amai's Candles" width="837" height="749">
+    <h1>Shop admin</h1>
+    <label>Email <input type="email" name="email" autocomplete="username" required></label>
+    <label>Password <input type="password" name="password" autocomplete="current-password" required></label>
+    <button class="btn primary" type="submit">Log in</button>
+    <button class="linkish" type="button" id="forgot">I forgot my password</button>
+    <p class="msg" role="status" id="login-msg"></p>
+  </form>
+</div>
+
+<div id="newpass" class="login" hidden>
+  <form class="card" id="newpass-form">
+    <h1>Choose a new password</h1>
+    <label>New password <input type="password" name="password" autocomplete="new-password" minlength="8" required></label>
+    <button class="btn primary" type="submit">Save password</button>
+    <p class="msg" role="status" id="newpass-msg"></p>
+  </form>
+</div>
+
+<div id="app" hidden>
+  <header class="top">
+    <div class="wrap">
+      <div class="brand"><img src="../images/logo-mark.png" alt="" width="686" height="593"><span class="script">Shop admin</span></div>
+      <div class="actions">
+        <a class="btn small" href="../" target="_blank" rel="noopener">View site</a>
+        <button class="btn small" id="logout" type="button">Log out</button>
+      </div>
+    </div>
+  </header>
+  <main class="wrap">
+    <div class="tabs" role="tablist">
+      <button role="tab" aria-selected="true" aria-controls="tab-products" id="t-products" type="button">Products</button>
+      <button role="tab" aria-selected="false" aria-controls="tab-text" id="t-text" type="button">Site text</button>
+    </div>
+
+    <section id="tab-products" role="tabpanel" aria-labelledby="t-products">
+      <div class="bar">
+        <p class="muted">Changes show on the site straight away. Refresh the site to see them.</p>
+        <button class="btn primary" id="add" type="button">+ Add a product</button>
+      </div>
+      <div id="list"><p class="muted">Loading…</p></div>
+    </section>
+
+    <section id="tab-text" role="tabpanel" aria-labelledby="t-text" hidden>
+      <p class="muted" style="margin-bottom:18px">Change any wording on the site, then press <b>Save changes</b> at the bottom. "Use original" puts back the text that was there before.</p>
+      <div id="texts"><p class="muted">Loading…</p></div>
+    </section>
+  </main>
+  <div class="savebar" id="savebar" hidden>
+    <div class="wrap">
+      <span id="changed-count" class="muted"></span>
+      <button class="btn primary" id="save-text" type="button">Save changes</button>
+    </div>
+  </div>
+</div>
+
+<dialog id="editor">
+  <form method="dialog" id="edit-form">
+    <h2 id="edit-title">Add a product</h2>
+    <div class="photo-pick">
+      <div class="preview" id="preview">No photo yet</div>
+      <label>Photo <span class="hint">A clear photo from your phone is perfect. It's resized for you.</span>
+        <input type="file" id="photo" accept="image/*">
+      </label>
+    </div>
+    <label>Name <input type="text" name="name" required maxlength="80" placeholder="Pink daisy pillar"></label>
+    <label>Description <span class="hint">One or two short sentences shown under the photo</span>
+      <textarea name="description" rows="2" maxlength="300"></textarea>
+    </label>
+    <label>Section
+      <select name="category" id="category"></select>
+    </label>
+    <label id="newcat-wrap" hidden>New section name <input type="text" name="newcat" maxlength="40" placeholder="Bookmarks"></label>
+    <label>Photo description <span class="hint">For people who can't see the photo. Leave it blank to use the description.</span>
+      <input type="text" name="alt" maxlength="200">
+    </label>
+    <label class="check"><input type="checkbox" name="visible" checked> Show on the site</label>
+    <p class="msg error" id="edit-msg" role="alert"></p>
+    <div class="row">
+      <button class="btn" value="cancel" formnovalidate type="submit">Cancel</button>
+      <button class="btn primary" id="save-product" value="save" type="submit">Save</button>
+    </div>
+  </form>
+</dialog>
+
+<script src="../config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.116.0/dist/umd/supabase.js"></script>
+<script>
+(function () {
+  var cfg = window.AMAI_SUPABASE || {};
+  var $ = function (id) { return document.getElementById(id); };
+  function show(id) { ['setup', 'login', 'newpass', 'app'].forEach(function (v) { $(v).hidden = v !== id; }); }
+
+  if (!cfg.url || !cfg.key || !window.supabase) { show('setup'); return; }
+  var db = window.supabase.createClient(cfg.url, cfg.key);
+  var BUCKET = 'products';
+  var CATS = ['Candles', 'Crochet'];
+  var products = [];
+
+  function toast(text, isError) {
+    document.querySelectorAll('.toast').forEach(function (old) { old.remove(); });
+    var t = document.createElement('div');
+    t.className = 'toast' + (isError ? ' error' : '');
+    t.setAttribute('role', 'status');
+    t.textContent = text;
+    document.body.appendChild(t);
+    setTimeout(function () { t.remove(); }, isError ? 6000 : 2500);
+  }
+  function fail(err) { console.error(err); toast('Something went wrong: ' + (err && err.message || err), true); }
+  function el(tag, attrs, text) {
+    var e = document.createElement(tag);
+    for (var k in attrs || {}) {
+      if (k === 'class') e.className = attrs[k];
+      else if (k.slice(0, 2) === 'on') e.addEventListener(k.slice(2), attrs[k]);
+      else e.setAttribute(k, attrs[k]);
+    }
+    if (text != null) e.textContent = text;
+    return e;
+  }
+  // Seeded products point at photos in the site's own images/ folder; this page lives one level down.
+  function imgSrc(url) { return /^https?:/i.test(url) ? url : '../' + url; }
+
+  /* ---------- Login ---------- */
+  var recovering = /type=recovery/.test(location.hash);
+  db.auth.onAuthStateChange(function (event, session) {
+    if (event === 'PASSWORD_RECOVERY') { recovering = true; show('newpass'); return; }
+    if (recovering && session) { show('newpass'); return; }
+    if (session) { show('app'); start(); } else { started = false; textsLoaded = false; show('login'); }
+  });
+
+  $('login-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var f = e.target, msg = $('login-msg');
+    msg.className = 'msg'; msg.textContent = 'Logging in…';
+    db.auth.signInWithPassword({ email: f.email.value.trim(), password: f.password.value }).then(function (r) {
+      if (r.error) { msg.className = 'msg error'; msg.textContent = "That email and password didn't match. Try again."; }
+      else msg.textContent = '';
+    });
+  });
+  $('forgot').addEventListener('click', function () {
+    var f = $('login-form'), msg = $('login-msg');
+    var email = f.email.value.trim();
+    if (!email) { msg.className = 'msg error'; msg.textContent = 'Type your email above first.'; f.email.focus(); return; }
+    db.auth.resetPasswordForEmail(email, { redirectTo: location.href.split('#')[0] }).then(function (r) {
+      msg.className = r.error ? 'msg error' : 'msg';
+      msg.textContent = r.error ? r.error.message : 'Check your email for a link to choose a new password.';
+    });
+  });
+  $('newpass-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var msg = $('newpass-msg');
+    db.auth.updateUser({ password: e.target.password.value }).then(function (r) {
+      if (r.error) { msg.className = 'msg error'; msg.textContent = r.error.message; return; }
+      recovering = false;
+      history.replaceState(null, '', location.pathname);
+      show('app'); start();
+    });
+  });
+  $('logout').addEventListener('click', function () { db.auth.signOut(); });
+
+  var started = false;
+  function start() {
+    if (started) return;
+    started = true;
+    db.rpc('is_admin').then(function (r) {
+      if (r.data !== true) toast("This account isn't on the admin list, so changes won't save. See ADMIN-SETUP.md.", true);
+    });
+    loadProducts();
+  }
+
+  /* ---------- Tabs ---------- */
+  var textsLoaded = false;
+  function tab(which) {
+    var isText = which === 'text';
+    $('t-products').setAttribute('aria-selected', String(!isText));
+    $('t-text').setAttribute('aria-selected', String(isText));
+    $('tab-products').hidden = isText;
+    $('tab-text').hidden = !isText;
+    $('savebar').hidden = !isText;
+    if (isText && !textsLoaded) { textsLoaded = true; loadTexts(); }
+  }
+  $('t-products').addEventListener('click', function () { tab('products'); });
+  $('t-text').addEventListener('click', function () { tab('text'); });
+
+  /* ---------- Products ---------- */
+  function categories() {
+    var seen = CATS.slice();
+    products.forEach(function (p) { if (seen.indexOf(p.category) < 0) seen.push(p.category); });
+    return seen;
+  }
+
+  function loadProducts() {
+    return db.from('products').select('*').order('position').order('created_at').then(function (r) {
+      if (r.error) return fail(r.error);
+      products = r.data;
+      renderList();
+    });
+  }
+
+  function renderList() {
+    var list = $('list');
+    list.textContent = '';
+    if (!products.length) { list.appendChild(el('p', { class: 'muted' }, 'No products yet. Press "Add a product" to add your first one.')); return; }
+    categories().forEach(function (cat) {
+      var items = products.filter(function (p) { return p.category === cat; });
+      if (!items.length) return;
+      var box = el('div', { class: 'cat' });
+      box.appendChild(el('h2', null, cat));
+      items.forEach(function (p, i) {
+        var row = el('div', { class: 'item' + (p.visible ? '' : ' off') });
+        row.appendChild(el('img', { src: imgSrc(p.image_url), alt: '', loading: 'lazy' }));
+        var text = el('div');
+        var h = el('h3', null, p.name);
+        if (!p.visible) h.appendChild(el('span', { class: 'badge' }, 'Hidden'));
+        text.appendChild(h);
+        text.appendChild(el('p', null, p.description));
+        row.appendChild(text);
+        var c = el('div', { class: 'controls' });
+        c.appendChild(el('button', { class: 'btn small icon', type: 'button', title: 'Move up', 'aria-label': 'Move ' + p.name + ' up', onclick: function () { move(items, i, -1); } }, '↑'));
+        c.appendChild(el('button', { class: 'btn small icon', type: 'button', title: 'Move down', 'aria-label': 'Move ' + p.name + ' down', onclick: function () { move(items, i, 1); } }, '↓'));
+        c.appendChild(el('button', { class: 'btn small', type: 'button', onclick: function () { openEditor(p); } }, 'Edit'));
+        c.appendChild(el('button', { class: 'btn small', type: 'button', onclick: function () { toggle(p); } }, p.visible ? 'Hide' : 'Show'));
+        c.appendChild(el('button', { class: 'btn small danger', type: 'button', onclick: function () { remove(p); } }, 'Delete'));
+        if (i === 0) c.children[0].disabled = true;
+        if (i === items.length - 1) c.children[1].disabled = true;
+        row.appendChild(c);
+        box.appendChild(row);
+      });
+      list.appendChild(box);
+    });
+  }
+
+  function move(items, i, dir) {
+    var j = i + dir;
+    if (j < 0 || j >= items.length) return;
+    // Renumber the whole section so positions stay distinct, then swap the two.
+    var ordered = items.slice();
+    var tmp = ordered[i]; ordered[i] = ordered[j]; ordered[j] = tmp;
+    var updates = ordered.map(function (p, k) { p.position = (k + 1) * 10; return db.from('products').update({ position: p.position }).eq('id', p.id); });
+    Promise.all(updates).then(function (rs) {
+      var bad = rs.find(function (r) { return r.error; });
+      if (bad) fail(bad.error);
+      loadProducts();
+    });
+  }
+
+  function toggle(p) {
+    db.from('products').update({ visible: !p.visible }).eq('id', p.id).then(function (r) {
+      if (r.error) return fail(r.error);
+      toast(p.visible ? 'Hidden from the site' : 'Showing on the site');
+      loadProducts();
+    });
+  }
+
+  function storagePath(url) {
+    var marker = '/storage/v1/object/public/' + BUCKET + '/';
+    var i = url.indexOf(marker);
+    return i < 0 ? null : decodeURIComponent(url.slice(i + marker.length));
+  }
+  function removePhoto(url) {
+    var path = url && storagePath(url);
+    if (path) db.storage.from(BUCKET).remove([path]);
+  }
+
+  function remove(p) {
+    if (!confirm('Delete "' + p.name + '"? This can\'t be undone. (To take it off the site for now, use Hide instead.)')) return;
+    db.from('products').delete().eq('id', p.id).then(function (r) {
+      if (r.error) return fail(r.error);
+      removePhoto(p.image_url);
+      toast('Deleted');
+      loadProducts();
+    });
+  }
+
+  /* Editor */
+  var editing = null, photoBlob = null;
+  var form = $('edit-form');
+
+  function fillCategories(selected) {
+    var sel = $('category');
+    sel.textContent = '';
+    categories().forEach(function (c) { sel.appendChild(el('option', { value: c }, c)); });
+    sel.appendChild(el('option', { value: '__new' }, 'A new section…'));
+    sel.value = selected || CATS[0];
+    $('newcat-wrap').hidden = true;
+  }
+  $('category').addEventListener('change', function (e) {
+    $('newcat-wrap').hidden = e.target.value !== '__new';
+    if (e.target.value === '__new') form.newcat.focus();
+  });
+
+  function setPreview(url) {
+    var pv = $('preview');
+    pv.style.backgroundImage = url ? 'url("' + url + '")' : '';
+    pv.textContent = url ? '' : 'No photo yet';
+  }
+
+  function openEditor(p) {
+    editing = p || null;
+    photoBlob = null;
+    form.reset();
+    $('photo').value = '';
+    $('edit-msg').textContent = '';
+    $('edit-title').textContent = p ? 'Edit product' : 'Add a product';
+    form.name.value = p ? p.name : '';
+    form.description.value = p ? p.description : '';
+    form.alt.value = p ? p.alt : '';
+    form.visible.checked = p ? p.visible : true;
+    fillCategories(p ? p.category : null);
+    setPreview(p ? imgSrc(p.image_url) : '');
+    $('editor').showModal();
+  }
+  $('add').addEventListener('click', function () { openEditor(null); });
+
+  // Phone photos are large; shrink to at most 1600px on the long side as a JPEG before uploading.
+  function shrink(file) {
+    return new Promise(function (resolve, reject) {
+      var url = URL.createObjectURL(file);
+      var img = new Image();
+      img.onload = function () {
+        var max = 1600, w = img.naturalWidth, h = img.naturalHeight;
+        var scale = Math.min(1, max / Math.max(w, h));
+        var canvas = document.createElement('canvas');
+        canvas.width = Math.round(w * scale); canvas.height = Math.round(h * scale);
+        var ctx = canvas.getContext('2d');
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+        URL.revokeObjectURL(url);
+        canvas.toBlob(function (b) { b ? resolve(b) : reject(new Error('Could not read that photo')); }, 'image/jpeg', 0.85);
+      };
+      img.onerror = function () { URL.revokeObjectURL(url); reject(new Error("That file doesn't look like a photo this browser can open. Try a JPG or PNG.")); };
+      img.src = url;
+    });
+  }
+
+  $('photo').addEventListener('change', function (e) {
+    var file = e.target.files[0];
+    if (!file) return;
+    $('edit-msg').textContent = '';
+    shrink(file).then(function (blob) {
+      photoBlob = blob;
+      setPreview(URL.createObjectURL(blob));
+    }).catch(function (err) { photoBlob = null; $('edit-msg').textContent = err.message; });
+  });
+
+  form.addEventListener('submit', function (e) {
+    if (e.submitter && e.submitter.value === 'cancel') return; // let the dialog close
+    e.preventDefault();
+    var msg = $('edit-msg');
+    var category = $('category').value === '__new' ? form.newcat.value.trim() : $('category').value;
+    if (!form.name.value.trim()) { msg.textContent = 'Please give it a name.'; return; }
+    if (!category) { msg.textContent = 'Please name the new section.'; return; }
+    if (!editing && !photoBlob) { msg.textContent = 'Please choose a photo.'; return; }
+
+    var btn = $('save-product');
+    btn.disabled = true; btn.textContent = 'Saving…';
+    msg.textContent = '';
+
+    var upload = photoBlob
+      ? (function () {
+          var path = Date.now() + '-' + Math.random().toString(36).slice(2, 8) + '.jpg';
+          return db.storage.from(BUCKET).upload(path, photoBlob, { contentType: 'image/jpeg', cacheControl: '31536000' }).then(function (r) {
+            if (r.error) throw r.error;
+            return db.storage.from(BUCKET).getPublicUrl(path).data.publicUrl;
+          });
+        })()
+      : Promise.resolve(null);
+
+    upload.then(function (newUrl) {
+      var row = {
+        name: form.name.value.trim(),
+        description: form.description.value.trim(),
+        alt: form.alt.value.trim(),
+        category: category,
+        visible: form.visible.checked
+      };
+      if (newUrl) row.image_url = newUrl;
+      if (editing) {
+        if (editing.category !== category) row.position = nextPosition(category);
+        return db.from('products').update(row).eq('id', editing.id).then(function (r) {
+          if (r.error) throw r.error;
+          if (newUrl) removePhoto(editing.image_url);
+        });
+      }
+      row.position = nextPosition(category);
+      return db.from('products').insert(row).then(function (r) { if (r.error) throw r.error; });
+    }).then(function () {
+      $('editor').close();
+      toast(editing ? 'Saved' : 'Added to the site');
+      loadProducts();
+    }).catch(function (err) {
+      console.error(err);
+      msg.textContent = 'Could not save: ' + (err.message || err);
+    }).then(function () {
+      btn.disabled = false; btn.textContent = 'Save';
+    });
+  });
+
+  function nextPosition(category) {
+    return products.filter(function (p) { return p.category === category; })
+      .reduce(function (m, p) { return Math.max(m, p.position); }, 0) + 10;
+  }
+
+  /* ---------- Site text ---------- */
+  var GROUPS = {
+    page: 'Browser tab', nav: 'Top menu', hero: 'Welcome (top of the page)', facts: 'Strip under the welcome',
+    work: 'What I make', about: 'About me', custom: 'Custom orders', form: 'Order form', footer: 'Bottom of the page',
+    thanks: 'Thank-you page (after an order is sent)'
+  };
+  var fields = []; // { key, original, saved, input, box }
+
+  var LABELS = {
+    'page.title': 'Title in the browser tab', 'thanks.page-title': 'Title in the browser tab',
+    'hero.title': 'Headline (first part)', 'hero.title-accent': 'Headline (coloured part)'
+  };
+  function nice(key) {
+    if (LABELS[key]) return LABELS[key];
+    var s = key.split('.').slice(1).join(' ').replace(/-/g, ' ');
+    if (/^\d+$/.test(s)) return 'Line ' + s;
+    return s.charAt(0).toUpperCase() + s.slice(1);
+  }
+
+  function loadTexts() {
+    // The wording lives in the pages themselves; read every element marked data-text from them.
+    var pages = ['../index.html', '../thanks.html'];
+    Promise.all(pages.map(function (u) { return fetch(u, { cache: 'no-store' }).then(function (r) { return r.text(); }); }))
+      .then(function (htmls) {
+        var originals = [], seen = {};
+        htmls.forEach(function (html) {
+          var doc = new DOMParser().parseFromString(html, 'text/html');
+          doc.querySelectorAll('[data-text]').forEach(function (n) {
+            var k = n.getAttribute('data-text');
+            if (seen[k]) return;
+            seen[k] = true;
+            originals.push({ key: k, text: n.textContent.replace(/\s+/g, ' ').trim() });
+          });
+        });
+        return db.from('site_text').select('key,value').then(function (r) {
+          if (r.error) throw r.error;
+          var saved = {};
+          r.data.forEach(function (row) { saved[row.key] = row.value; });
+          renderTexts(originals, saved);
+        });
+      }).catch(fail);
+  }
+
+  function renderTexts(originals, saved) {
+    var wrap = $('texts');
+    wrap.textContent = '';
+    fields = [];
+    var groups = {};
+    var order = [];
+    originals.forEach(function (o) {
+      var g = o.key.split('.')[0];
+      if (!groups[g]) { groups[g] = []; order.push(g); }
+      groups[g].push(o);
+    });
+    order.forEach(function (g) {
+      var sec = el('div', { class: 'group' });
+      sec.appendChild(el('h2', null, GROUPS[g] || g));
+      var card = el('div', { class: 'card' });
+      groups[g].forEach(function (o) {
+        var current = saved[o.key] != null ? saved[o.key] : o.text;
+        var f = { key: o.key, original: o.text, saved: saved[o.key] != null ? saved[o.key] : null };
+        var box = el('div', { class: 'field' });
+        var id = 'txt-' + o.key.replace(/\W/g, '-');
+        var lr = el('div', { class: 'label-row' });
+        lr.appendChild(el('label', { for: id }, nice(o.key)));
+        var reset = el('button', { class: 'linkish reset', type: 'button' }, 'Use original');
+        lr.appendChild(reset);
+        box.appendChild(lr);
+        var input = el('textarea', { id: id, rows: String(Math.max(1, Math.ceil(current.length / 70))) });
+        input.value = current;
+        box.appendChild(input);
+        f.input = input; f.box = box; f.reset = reset;
+        input.addEventListener('input', function () { refreshField(f); });
+        reset.addEventListener('click', function () { input.value = f.original; refreshField(f); });
+        fields.push(f);
+        card.appendChild(box);
+        refreshField(f);
+      });
+      sec.appendChild(card);
+      wrap.appendChild(sec);
+    });
+  }
+
+  function currentSaved(f) { return f.saved != null ? f.saved : f.original; }
+  function refreshField(f) {
+    f.box.classList.toggle('changed', f.input.value !== currentSaved(f));
+    f.reset.hidden = f.input.value === f.original;
+    var n = fields.filter(function (x) { return x.input.value !== currentSaved(x); }).length;
+    $('changed-count').textContent = n ? n + (n === 1 ? ' change' : ' changes') + ' not saved yet' : 'Everything is saved';
+    $('save-text').disabled = !n;
+  }
+
+  $('save-text').addEventListener('click', function () {
+    var changed = fields.filter(function (f) { return f.input.value !== currentSaved(f); });
+    if (!changed.length) return;
+    var toReset = changed.filter(function (f) { return f.input.value.trim() === '' || f.input.value === f.original; });
+    var toSave = changed.filter(function (f) { return toReset.indexOf(f) < 0; });
+    var btn = $('save-text');
+    btn.disabled = true; btn.textContent = 'Saving…';
+    var jobs = [];
+    if (toSave.length) jobs.push(db.from('site_text').upsert(toSave.map(function (f) { return { key: f.key, value: f.input.value, updated_at: new Date().toISOString() }; })));
+    if (toReset.length) jobs.push(db.from('site_text').delete().in('key', toReset.map(function (f) { return f.key; })));
+    Promise.all(jobs).then(function (rs) {
+      var bad = rs.find(function (r) { return r.error; });
+      if (bad) throw bad.error;
+      toSave.forEach(function (f) { f.saved = f.input.value; });
+      toReset.forEach(function (f) { f.saved = null; f.input.value = f.original; });
+      fields.forEach(refreshField);
+      toast('Saved. Refresh the site to see it.');
+    }).catch(fail).then(function () { btn.textContent = 'Save changes'; fields.length && refreshField(fields[0]); });
+  });
+
+  window.addEventListener('beforeunload', function (e) {
+    if (fields.some(function (f) { return f.input.value !== currentSaved(f); })) { e.preventDefault(); e.returnValue = ''; }
+  });
+})();
+</script>
+</body>
+</html>
